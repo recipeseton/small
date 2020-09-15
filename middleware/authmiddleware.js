@@ -22,7 +22,7 @@ const requireAuth = (req, res, next) => {
 const checkUser = (req, res, next) => {
     const token = req.cookies.jwt;
     if(token){
-        jwt.verify(token, 'my secret key goes here', async (err, decodedToken) => {
+        jwt.verify(token, process.env.SECRET_KEY, async (err, decodedToken) => {
             if(err){
                 res.status(404).redirect('/login');
                 next();
